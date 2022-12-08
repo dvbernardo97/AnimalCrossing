@@ -15,7 +15,7 @@ function checkToken(req, res) {
 
 async function login(req, res) {
   try {
-    const user = await User.findOne({email: req.body.email});
+    const user = await User.findOne({ email: req.body.email });
     if (!user) throw new Error();
     const match = await bcrypt.compare(req.body.password, user.password);
     if (!match) throw new Error();
@@ -27,6 +27,8 @@ async function login(req, res) {
 }
 
 async function create(req, res) {
+  console.log('createfun')
+  console.log('req')
   try {
     const user = await User.create(req.body);
     const token = createJWT(user);

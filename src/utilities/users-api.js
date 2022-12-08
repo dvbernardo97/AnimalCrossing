@@ -4,6 +4,8 @@ import sendRequest from './send-request';
 const BASE_URL = '/api/users';
 
 export function signUp(userData) {
+  console.log('userapi')
+  console.log(userData)
   return sendRequest(BASE_URL, 'POST', userData);
 }
 

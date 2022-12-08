@@ -9,6 +9,7 @@ import * as usersAPI from './users-api';
 export async function signUp(userData) {
   // Delegate the AJAX request to the users-api.js
   // module.
+  console.log('sign up')
   const token = await usersAPI.signUp(userData);
   localStorage.setItem('token', token);
   return getUser();
