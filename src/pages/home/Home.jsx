@@ -5,10 +5,9 @@ const Home = () => {
   const [villagers, setVillagers] = useState([])
   useEffect(() => {
     const fetchVillagers = async () => {
-      const res = await fetch(`http://acnhapi.com/v1/villagers/`)
+      const items = await fetch(`http://acnhapi.com/v1/villagers/`)
         .then(res => res.json())
-      console.log(res)
-      setVillagers(res)
+      setVillagers(items)
     }
     fetchVillagers()
     console.log('so fetch')
