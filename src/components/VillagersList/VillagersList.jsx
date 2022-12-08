@@ -15,7 +15,7 @@ export default function VillagersList({ villagers }) {
                         // console.log(villagers[key].name["name-USen"])
                         return (
 
-                            VillagerCard(villagers[key])
+                            <VillagerCard villager={villagers[key]} />
 
                         )
                     })
