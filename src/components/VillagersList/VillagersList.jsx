@@ -1,9 +1,6 @@
 import VillagerCard from "../VillagerCard/VillagerCard"
 
-export default function VillagersList({ villagers }) {
-    // const list = villagers.map((villager)=>{
-    //     return (<VillagerCard villager={villager} />)})
-    // console.log(villagers)
+export default function VillagersList({ villagers, user }) {
     return (
         <>
             {villagers ?
@@ -12,10 +9,9 @@ export default function VillagersList({ villagers }) {
                     <h1>Villagers List</h1>
 
                     {Object.keys(villagers).map(function (key, index) {
-                        // console.log(villagers[key].name["name-USen"])
                         return (
 
-                            <VillagerCard villager={villagers[key]} />
+                            <VillagerCard key={index} user={user} villager={villagers[key]} />
 
                         )
                     })

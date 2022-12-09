@@ -1,11 +1,13 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../../models/user');
+const Profile = require('../../models/profile')
 
 module.exports = {
   create,
   login,
-  checkToken
+  checkToken,
+  update
 };
 
 function checkToken(req, res) {
@@ -27,11 +29,13 @@ async function login(req, res) {
 }
 
 async function create(req, res) {
-  console.log('createfun')
-  console.log('req')
   try {
     const user = await User.create(req.body);
     const token = createJWT(user);
+    let newProfile = {
+      user: user._id
+    }
+    await Profile.create(newProfile)
     // The token is a string, but yes, we can
     // res.json a string
     res.json(token);
@@ -48,4 +52,15 @@ function createJWT(user) {
     process.env.SECRET,
     { expiresIn: '24h' }
   );
+}
+
+function update(req, res, next) {
+  User.findById(req.params.id)
+    .then(user => {
+      user.favoriteVillagers = user.favoriteVillagers.push(req.body.favoriteVillagers)
+      user.save()
+        .then(() => res.json("Villager list added"))
+        .catch(err => res.status(400).json("Error: " + err))
+    })
+    .catch(err => res.status(400).json("Error: " + err))
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import VillagersList from '../../components/VillagersList/VillagersList'
 
-const Home = () => {
+export default function Home({ user }) {
   const [villagers, setVillagers] = useState([])
   useEffect(() => {
     const fetchVillagers = async () => {
@@ -10,15 +10,12 @@ const Home = () => {
       setVillagers(items)
     }
     fetchVillagers()
-    console.log('so fetch')
   }, [])
 
-
+  
   return (
     <div>
-      <VillagersList villagers={villagers} />
+      <VillagersList user={user} villagers={villagers} />
     </div>
   );
 }
-
-export default Home

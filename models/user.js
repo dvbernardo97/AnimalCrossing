@@ -18,7 +18,10 @@ const userSchema = new Schema({
     trim: true,
     minlength: 3,
     required: true
-  }
+  },
+  favoriteVillagers:[
+    {type: String, required: false }
+  ]
 }, {
   timestamps: true,
   toJSON: {
