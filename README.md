@@ -18,6 +18,8 @@
 
 ## WireFrames
 ![sign in page](public/Screenshot%202022-12-09%20101422.png)
+![favorite](public/Screenshot%202022-12-09%20114051.png)
+
 
 ##instructions:
 -sign up and log in
