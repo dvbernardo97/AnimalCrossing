@@ -5,5 +5,6 @@ const villagerCtrl = require('../../controllers/api/villagers');
 // GET /api/items
 router.post('/:id', villagerCtrl.create);
 router.get('/:id', villagerCtrl.show)
+router.delete('/delete/:id', villagerCtrl.delete)
 
 module.exports = router;

@@ -1,11 +1,14 @@
+const profile = require('../../models/profile');
 const Profile = require('../../models/profile');
 const User = require('../../models/user');
 
 module.exports = {
   create,
-  show
+  show,
+  delete: deleteOne
 };
 async function create(req, res) {
+  console.log(req.body)
   const profile = await Profile.findOne({ user: req.params.id })
   profile.favorites.push(req.body)
   await profile.save()
@@ -13,25 +16,39 @@ async function create(req, res) {
   res.json(profile)
 }
 
-// async function addFav(req, res) {
+
+async function show(req, res) {
+  console.log(req.params.id)
+  try {
+    const profile = await Profile.findOne({
+      user: req.params.id
+    })
+    await profile.populate({ path: "favorites" })
+    console.log(profile)
+    res.json(profile)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+
+// async function deleteOne(req, res) {
 //   let profile = await Profile.findOne({ user: req.params.userId })
-//     .then(function (profile) {
-//       console.log(profile)
-//       if (profile) {
-//         profile.favorites.add(req.body)
-//         profile.save();
-//       }
-//     })
+//   profile.favorites.remove(req.params.id)
+//   await profile.save()
 //   res.json(profile)
 // }
 
-async function show(req, res) {
-  const profile = await Profile.findOne({
-    user: req.params.id
-  }).populate({
-    path: 'favorites',
-    // populate: { path: 'favoritedVillager' }
-  })
-  console.log(profile)
-  res.json(profile)
+function villi(req, res) {
+  // // try {
+  console.log(req.params.id)
+  const favorite = profile.favorites.findOne({ _id: req.params.id })
+  console.log("🪲", favorite)
+  // // .then((res) => res.json("villager deleted"))
+  // // .catch(err => res.status(400).json(err))
+  // // res.json(villager)
+
+  // // } catch (err) {
+  // //   res.status(400).json(err)
+  // // }
 }
