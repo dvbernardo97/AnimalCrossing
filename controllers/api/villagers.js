@@ -7,9 +7,11 @@ module.exports = {
   show,
   delete: deleteOne
 };
+
 async function create(req, res) {
-  console.log(req.body)
+  console.log(req.params.id)
   const profile = await Profile.findOne({ user: req.params.id })
+  console.log("🪲", profile)
   profile.favorites.push(req.body)
   await profile.save()
   console.log(profile)
@@ -39,16 +41,17 @@ async function show(req, res) {
 //   res.json(profile)
 // }
 
-function villi(req, res) {
-  // // try {
+function deleteOne(req, res) {
+  console.log("🪲", "started")
+  // try {
   console.log(req.params.id)
   const favorite = profile.favorites.findOne({ _id: req.params.id })
   console.log("🪲", favorite)
-  // // .then((res) => res.json("villager deleted"))
-  // // .catch(err => res.status(400).json(err))
-  // // res.json(villager)
+  // .then((res) => res.json("villager deleted"))
+  // .catch(err => res.status(400).json(err))
+  // res.json(villager)
 
-  // // } catch (err) {
-  // //   res.status(400).json(err)
-  // // }
+  // } catch (err) {
+  //   res.status(400).json(err)
+  // }
 }

@@ -21,20 +21,21 @@ function FavoriteVillager({ user }) {
     //     }).then(res => res.json())
     //     setNewFavorites(response.favorites)
     // }
-
     async function handleDelete(event) {
         event.preventDefault()
         let id = event.target.className
         console.log(id)
-        console.log(newFavorites[id])
-        id = newFavorites[id]._id
-        console.log(id)
-        const res = await fetch(`/api/villagers/delete/${id}`,
-            { method: "DELETE" })
-            .then(res => res.json())
-            .catch(err => console.log(err))
-        console.log(res)
-    // }
+        const deleteFave = await villagersAPI.deleteFavorite(id)
+        // console.log(newFavorites[id])
+        // id = newFavorites[id]._id
+        // console.log(id)
+        // const res = await fetch(`/api/villagers/delete/${id}`,
+        //     { method: "DELETE" })
+        //     .then(res => res.json())
+        //     .catch(err => console.log(err))
+        // console.log(res)
+        console.log("click")
+    }
     return (
 
         <div>

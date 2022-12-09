@@ -31,11 +31,14 @@ async function login(req, res) {
 async function create(req, res) {
   try {
     const user = await User.create(req.body);
+    console.log(req.body)
     const token = createJWT(user);
     let newProfile = {
-      user: user._id
+      user: user._id,
+      favorites: []
     }
-    await Profile.create(newProfile)
+    console.log(newProfile)
+    const profile = await Profile.create(newProfile)
     // The token is a string, but yes, we can
     // res.json a string
     res.json(token);
