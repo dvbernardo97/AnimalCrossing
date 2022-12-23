@@ -5,7 +5,7 @@
  */
 
 var app = require('../server');
-var debug = require('debug')('AC:server');
+var debug = require('debug')('shrouded-peak-16235:server');
 var http = require('http');
 
 /**
