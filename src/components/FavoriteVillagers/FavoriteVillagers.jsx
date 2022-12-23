@@ -15,12 +15,6 @@ function FavoriteVillager({ user }) {
         getFavorites()
     }, [])
 
-    // const handleDelete = async () => {
-    //     const response = await fetch(/daily_horoscope/${user._id}/${id}, {
-    //         method: 'DELETE' 
-    //     }).then(res => res.json())
-    //     setNewFavorites(response.favorites)
-    // }
     async function handleDelete(event) {
         event.preventDefault()
         let id = event.target.className
